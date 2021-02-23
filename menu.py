@@ -1,10 +1,15 @@
 import os
+from tkinter import Message, filedialog as a
+import tkinter as tk
 clear = lambda: os.system('cls')
 
-
+datos = ""
 def cargar_archivo():
     print ("archivo cargado exitosamente")
-
+    global datos
+    root = tk.Tk()
+    root.withdraw()
+    datos = a.askopenfilename()
 
 
 def Datos_estudiante():
