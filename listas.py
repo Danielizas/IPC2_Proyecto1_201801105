@@ -1,12 +1,11 @@
 class Node(object):
     "" "Crear una clase de nodo" ""
-    def __init__(self, nombre, m, n, x, y):
+    def __init__(self,nombre, n, m, datos):
         self.nombre = nombre
         self.n = n
         self.m = m
-        self.x = x
-        self.y = y
-
+        self.datos = datos
+        self.next = None
 class create_circular_linked_list(object):
     "" "Crear una clase que cree una lista circular enlazada" ""    
     def __init__(self):
@@ -16,9 +15,9 @@ class create_circular_linked_list(object):
         "" "Determine si la lista circular está vacía" ""
         return self.head is None 
 
-    def add_first(self, data):
+    def add_first(self,nombre, n, m, datos):
         "" "Agregar un nodo en la cabeza" ""
-        node = Node(data)
+        node = Node(nombre, n, m,datos)
         if self.is_empty():
             self.head = node
             node.next = self.head
@@ -32,9 +31,10 @@ class create_circular_linked_list(object):
             node.next = self.head
                         # Luego dele el título del nodo principal al nuevo nodo
             self.head = node
-    def add_last(self, data):
+
+    def add_last(self,nombre, n, m,datos):
         "" "Agregar un nodo al final" ""
-        node = Node(data)
+        node = Node(nombre, n, m, datos)
         if self.is_empty():
             self.head = node
             node.next = self.head
@@ -46,35 +46,35 @@ class create_circular_linked_list(object):
                         # El nodo de cola apunta al nuevo nodo
             cur.next = node
                         # El nuevo nodo apunta al nodo principal
-
-    def remove_node(self, data):
-        "" "Eliminar nodo especificado" ""
-        if self.is_empty():
-            return
-                # Si el nodo a eliminar es el nodo principal
-        elif data == self.head.data:
-            cur = self.head
-            while cur.next != self.head:
-                cur = cur.next
-            cur.next = self.head.next
-            self.head = self.head.next
-        else:
-            cur = self.head
-            pre = None
-                        # Mover a la posición del nodo que se va a eliminar
-            while cur.data != data:
-                pre = cur
-                cur = cur.next
-                        # Apunte el nodo precursor del nodo que se va a eliminar al nodo posterior, de modo que se omita el nodo central
-            pre.next = cur.next
-
-    def travel(self):
+            node.next = self.head
+    def travel(self, nombre, n, m, datos):
         "" "Recorriendo la lista vinculada" ""
         if self.is_empty():
             return
         cur = self.head
-        print(cur.data)
+        print(cur.nombre + " " + cur.n +" "+ cur.m +" ")
+        for lis in cur.datos:
+            print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2])
         while cur.next != self.head:
             cur = cur.next
-            print(cur.data)
-
+            print(cur.nombre + " " + cur.n +" "+ cur.m +" ")
+            for lis in cur.datos:
+                print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2])
+                
+    def is_exist(self, nombre):
+        "" "Buscar si el nodo especificado existe" ""
+        cur = self.head
+        posicion=0
+        while cur is not None:
+                        # Encuentra el nodo encontrado
+            if cur.nombre == nombre:
+                print("Matriz localicada: "+" "+ cur.nombre + " " +str(posicion))
+                return True
+                        # La cola ha sido encontrada
+            elif cur.next == self.head:
+                print("Matriz no se encuetra. ")    
+                return False
+            else:
+                cur = cur.next
+            posicion = posicion +1    
+        return False
