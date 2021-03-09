@@ -3,7 +3,7 @@ from listas import create_circular_linked_list
 import xml.etree.ElementTree as ET
 clear = lambda: os.system('cls')
 lista = create_circular_linked_list()
-
+from listasimple import linked_list
 # C:\Users\danii\Desktop\Proyecto1IPC2\entrada1.xml
 # C:\Users\danii\Desktop\Proyecto1IPC2\Archivoprueba.xml
 def cargar_archivo():
@@ -23,13 +23,20 @@ def cargar_archivo():
             x = str(subelem.get('x'))
             y = str(subelem.get('y'))
             res = str(subelem.text)
-            datname = [x, y, res]
-            child.append(datname)
-            #print(subelem.text," x ", subelem.get('x'), "y", subelem.get('y'))
+            a = str("0")
+            if res != a:
+                binaria = 1
+                datname = [x, y, res, str(binaria)]
+                child.append(datname)
+            else:
+                binaria = 0
+                datname = [x, y,res, str(binaria)]
+                child.append(datname)
+
         if l ==0:
-            lista.add_first(name, nfil, mcol, child)
+            lista.add_first(name, nfil, mcol, child, binaria)
         else:
-            lista.add_last(name, nfil, mcol, child)
+            lista.add_last(name, nfil, mcol, child, binaria)
         datname = []
         child = []    
         l= l+1
@@ -39,10 +46,11 @@ def cargar_archivo():
 
 
 def procesar_archivo():
-    matriz = input("Ingrese la matriz indicada")
-    lista.is_exist(matriz)
-
-    
+    #valor_binario = []
+    #matriz = input("Ingrese la matriz indicada: ")
+    #lista.is_exist(matriz)
+    #listas[matriz % len(matriz)] = valor_binario
+    print ("")
 
 
 def Datos_estudiante():

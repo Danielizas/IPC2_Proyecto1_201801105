@@ -1,11 +1,14 @@
 class Node(object):
     "" "Crear una clase de nodo" ""
-    def __init__(self,nombre, n, m, datos):
+    def __init__(self,nombre, n, m, datos,binario):
         self.nombre = nombre
         self.n = n
         self.m = m
         self.datos = datos
+        self.binario = binario
         self.next = None
+        
+
 class create_circular_linked_list(object):
     "" "Crear una clase que cree una lista circular enlazada" ""    
     def __init__(self):
@@ -15,23 +18,10 @@ class create_circular_linked_list(object):
         "" "Determine si la lista circular está vacía" ""
         return self.head is None 
 
-    def length(self):
-        "" "Obtenga la longitud de la lista circular" ""
-        cur = self.head
-        count = 0
-        while cur is not None:
-            count += 1
-                        # Si el siguiente nodo del nodo actual es el nodo principal, significa que este nodo es el nodo de cola
-                        # Si no, mueva el puntero hacia atrás
-            if cur.next == self.head:
-                break
-            else:
-                cur = cur.next
-        return count
 
-    def add_first(self,nombre, n, m, datos):
+    def add_first(self,nombre, n, m, datos, binario):
         "" "Agregar un nodo en la cabeza" ""
-        node = Node(nombre, n, m,datos)
+        node = Node(nombre, n, m,datos, binario)
         if self.is_empty():
             self.head = node
             node.next = self.head
@@ -46,9 +36,10 @@ class create_circular_linked_list(object):
                         # Luego dele el título del nodo principal al nuevo nodo
             self.head = node
 
-    def add_last(self,nombre, n, m,datos):
+    def add_last(self,nombre, n, m,datos, binario):
         "" "Agregar un nodo al final" ""
-        node = Node(nombre, n, m, datos)
+        node = Node(nombre, n, m, datos, binario)
+
         if self.is_empty():
             self.head = node
             node.next = self.head
@@ -61,6 +52,7 @@ class create_circular_linked_list(object):
             cur.next = node
                         # El nuevo nodo apunta al nodo principal
             node.next = self.head
+            
     def travel(self, nombre, n, m, datos):
         "" "Recorriendo la lista vinculada" ""
         if self.is_empty():
@@ -68,12 +60,12 @@ class create_circular_linked_list(object):
         cur = self.head
         print(cur.nombre + " " + cur.n +" "+ cur.m +" ")
         for lis in cur.datos:
-            print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2])
+            print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2]+ " BI= " +lis[3])
         while cur.next != self.head:
             cur = cur.next
             print(cur.nombre + " " + cur.n +" "+ cur.m +" ")
             for lis in cur.datos:
-                print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2])
+                print("X:" + lis[0]+" Y:"+lis[1]+" = "+ lis[2]+ " BI= " + lis[3])
                 
     def is_exist(self, nombre):
         "" "Buscar si el nodo especificado existe" ""
