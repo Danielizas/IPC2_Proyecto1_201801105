@@ -15,6 +15,20 @@ class create_circular_linked_list(object):
         "" "Determine si la lista circular está vacía" ""
         return self.head is None 
 
+    def length(self):
+        "" "Obtenga la longitud de la lista circular" ""
+        cur = self.head
+        count = 0
+        while cur is not None:
+            count += 1
+                        # Si el siguiente nodo del nodo actual es el nodo principal, significa que este nodo es el nodo de cola
+                        # Si no, mueva el puntero hacia atrás
+            if cur.next == self.head:
+                break
+            else:
+                cur = cur.next
+        return count
+
     def add_first(self,nombre, n, m, datos):
         "" "Agregar un nodo en la cabeza" ""
         node = Node(nombre, n, m,datos)
